@@ -6,7 +6,7 @@ class PostAdmin(admin.ModelAdmin):
     pass
 
 class CommentAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['post', 'text', 'username', 'created_date']
 
 admin.site.register(Post, PostAdmin)
 admin.site.register(Comment, CommentAdmin)

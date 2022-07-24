@@ -86,10 +86,16 @@ class ProfileView(generics.GenericAPIView):
             "user": UserSerializer(request.user, context=self.get_serializer_context()).data,
         })
 
-class CommentView(generics.ListCreateAPIView):
+class AddCommentView(generics.CreateAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+class CommentView(generics.ListCreateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
         post_slug = self.kwargs['post_slug'].lower()
